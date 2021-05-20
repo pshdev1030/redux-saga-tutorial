@@ -1,27 +1,15 @@
-# redux-saga-beginner-tutorial
-Companion Repo for [Redux/Redux-saga beginner tutorial](https://github.com/redux-saga/redux-saga/blob/master/docs/introduction/BeginnerTutorial.md)
-
-# Instructions
-
-Setup
-
+## Saga를 실행하기 위해서 해야할 일
+1. Sagas 리스트와 함께 Saga 미들웨어를 만들어라
+2. Saga 미들웨어를 Redux 스토어에 연결하세요
 ```
-// clone the repo
-git clone https://github.com/redux-saga/redux-saga-beginner-tutorial.git
+import {createStore,applyMiddleware} from 'redux';
+import createSagaMiddleware from 'redux-saga';
 
-cd redux-saga-beginner-tutorial
+const sagaMiddleware=createSagaMiddleware();
+const store=createStore(
+    reducer,
+    applyMiddleware(sagaMiddleware)
+)
 
-npm install
-```
-
-Run the demo
-
-```
-npm start
-```
-
-Run tests
-
-```
-npm test
+sagaMiddleware.run(helloSaga);
 ```
