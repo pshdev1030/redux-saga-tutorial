@@ -13,3 +13,23 @@ const store=createStore(
 
 sagaMiddleware.run(helloSaga);
 ```
+
+
+## 비동기 호출하기
+```javascript sagas.js
+// worker Saga: 비동기 증가 태스크를 수행할겁니다.
+export function* incrementAsync() {
+  yield delay(1000)
+  yield put({ type: 'INCREMENT' })
+}
+
+// watcher Saga: 각각의 INCREMENT_ASYNC 에 incrementAsync 태스크를 생성할겁니다.
+export function* watchIncrementAsync() {
+  yield takeEvery('INCREMENT_ASYNC', incrementAsync)
+}
+```
+
+redux-thunk는 함수를 dispatch하여 비동기작업을 수행하지만
+redux-saga는 순수 액션 오브젝트만 dispatch한다.
+
+delay
